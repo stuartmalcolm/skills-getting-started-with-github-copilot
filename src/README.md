@@ -9,16 +9,16 @@ A super simple FastAPI application that allows students to view and sign up for 
 
 ## Getting Started
 
-1. Install the dependencies:
+1. From the project root, install the dependencies:
 
    ```
-   pip install fastapi uvicorn
+   python -m pip install -r requirements.txt
    ```
 
-2. Run the application:
+2. From the project root, run the application:
 
    ```
-   python app.py
+   python -m uvicorn src.app:app --reload
    ```
 
 3. Open your browser and go to:
@@ -32,6 +32,8 @@ A super simple FastAPI application that allows students to view and sign up for 
 | GET    | `/activities`                                                     | Get all activities with their details and current participant count |
 | POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Sign up for an activity                                             |
 | DELETE | `/activities/{activity_name}/signup?email=student@mergington.edu` | Unregister a student from an activity                               |
+
+Signup and unregister requests require a valid email address. Signup is rejected with `409 Conflict` when an activity has reached its participant limit.
 
 ## Data Model
 
